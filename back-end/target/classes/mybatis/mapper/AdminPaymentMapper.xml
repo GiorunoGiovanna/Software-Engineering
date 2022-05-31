@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="nuc.ss.mapper.AdminPaymentMapper">
+
+    <select id="queryAPList" resultType="AdminPayment">
+        select * from databaselab.adminpayment;
+    </select>
+
+    <select id="queryAPBykeyword" resultType="AdminPayment">
+        select * from databaselab.adminpayment where AHRName like concat('%','${keyword}','%') or Designee like concat('%','${keyword}','%') or Registrant like concat('%','${keyword}','%');
+    </select>
+
+    <select id="queryAPByTime" resultType="AdminPayment">
+        select * from databaselab.adminpayment where DesigneeTime between #{start} and #{end};
+    </select>
+
+    <select id="queryAPById" resultType="AdminPayment">
+        select * from databaselab.adminpayment where id=#{id}
+    </select>
+
+    <insert id="addAP" parameterType="AdminPayment">
+        insert into databaselab.adminpayment (AHRid, AHRName, Designee, DesigneeTime, Registrant, Base, Transportation, Lunch, Communication, PensionInsurance, MedicalInsurance, UnemploymentInsurance, HousingProvidentFund, Tatol, State) values (#{AHRid},#{AHRName},#{Designee},#{DesigneeTime},#{Registrant},#{Base},#{Transportation},#{Lunch},#{Communication},#{PensionInsurance},#{MedicalInsurance},#{UnemploymentInsurance},#{HousingProvidentFund},#{Tatol},#{State});
+    </insert>
+
+    <update id="updateAP" parameterType="AdminPayment">
+        update databaselab.adminpayment set AHRid=#{AHRid},AHRName = #{AHRName},Designee = #{Designee},DesigneeTime=#{DesigneeTime},Registrant = #{Registrant},Base = #{Base},Transportation = #{Transportation},Lunch = #{Lunch},Communication = #{Communication},PensionInsurance = #{PensionInsurance},MedicalInsurance = #{MedicalInsurance},UnemploymentInsurance = #{UnemploymentInsurance},HousingProvidentFund = #{HousingProvidentFund},Tatol = #{Tatol},State = #{State},Suggestion = #{Suggestion} where id = #{id};
+    </update>
+
+    <delete id="deleteAP" parameterType="AdminPayment">
+        delete from databaselab.adminpayment where id = #{id}
+    </delete>
+</mapper>

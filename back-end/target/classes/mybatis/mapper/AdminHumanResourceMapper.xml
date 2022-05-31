@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="nuc.ss.mapper.AdminHumanResourceMapper">
+
+    <select id="queryAHRList" resultType="AdminHumanResource">
+        select * from databaselab.adminhumanresources;
+    </select>
+
+    <select id="queryAHRById" resultType="AdminHumanResource">
+        select * from databaselab.adminhumanresources where id = #{id};
+    </select>
+
+    <insert id="addAHR" parameterType="AdminHumanResource">
+        insert into databaselab.adminhumanresources (ILevel, IILevel, IIILevel,PositionType,JobTitle) values (#{ILevel},#{IILevel},#{IIILevel},#{PositionType},#{JobTitle});
+    </insert>
+
+    <update id="updateAHR" parameterType="AdminHumanResource">
+        update databaselab.adminhumanresources set ILevel=#{ILevel},IILevel = #{IILevel},IIILevel = #{IIILevel},PositionType = #{PositionType},JobTitle = #{JobTitle} where id = #{id};
+    </update>
+
+    <delete id="deleteAHR" parameterType="AdminHumanResource">
+        delete from databaselab.adminhumanresources where id = #{id}
+    </delete>
+</mapper>
