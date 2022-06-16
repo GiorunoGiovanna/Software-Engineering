@@ -8,6 +8,14 @@ import user from './modules/user'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  state: {
+    identity: 'admin'
+  },
+  mutations: {
+    setIdentity: (state, identity) => {
+      state.identity = identity
+    }
+  },
   modules: {
     app,
     settings,

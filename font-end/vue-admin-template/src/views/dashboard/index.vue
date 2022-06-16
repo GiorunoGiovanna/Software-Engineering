@@ -1,20 +1,21 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">role: {{ role }}</div>
+    <div class="dashboard-text">欢迎回来: {{ name }}</div>
+    <div class="dashboard-text">
+      您的身份是: {{ role ? "管理员" : "普通用户" }}
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   computed: {
-    ...mapGetters([
-      'role'
-    ])
-  }
-}
+    ...mapGetters(["name", "role"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>

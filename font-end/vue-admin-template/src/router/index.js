@@ -52,7 +52,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '用户界面', icon: 'dashboard' }
     }]
   },
 
@@ -61,26 +61,70 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    meta: { title: '后台界面', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'adminAHR',
-        name: 'adminAHR',
-        component: () => import('@/views/adminAHR/index'),
-        meta: { title: 'adminAHR', icon: 'table' }
+        path: 'equipment',
+        name: 'Equipment',
+        component: () => import('@/views/equipment/index'),
+        meta: { title: '器材管理', icon: 'table' },
       },
       {
-        path: 'adminAP',
-        name: 'adminAP',
-        component: () => import('@/views/adminAP/index'),
-        meta: { title: 'adminAP', icon: 'table' }
+        path: 'adde',
+        name: 'adde',
+        component: () => import('@/views/equipment/addE/addE'),
+        meta: { title: 'adde', icon: 'tree' },
+        hidden: true
       },
       {
-        path: 'HR',
-        name: 'HR',
-        component: () => import('@/views/HR/index'),
-        meta: { title: 'HR', icon: 'table' }
+        path: 'adder',
+        name: 'adder',
+        component: () => import('@/views/equipment/addER/addER'),
+        meta: { title: 'adder', icon: 'tree' },
+        hidden: true
       },
+      {
+        path: 'ground',
+        name: 'ground',
+        component: () => import('@/views/ground/index'),
+        meta: { title: '场地管理', icon: 'table' },
+      },
+      {
+        path: 'addgb',
+        name: 'addgb',
+        component: () => import('@/views/ground/addGB/index'),
+        meta: { title: '场地借用管理', icon: 'table' },
+      },
+      {
+        path: 'match',
+        name: 'match',
+        component: () => import('@/views/match/index'),
+        meta: { title: '赛事管理', icon: 'table' },
+      },
+      {
+        path: 'financial',
+        name: 'financial',
+        component: () => import('@/views/financial/index'),
+        meta: { title: '财务管理', icon: 'table' },
+      },
+      // {
+      //   path: 'adminAHR',
+      //   name: 'adminAHR',
+      //   component: () => import('@/views/adminAHR/index'),
+      //   meta: { title: 'adminAHR', icon: 'table' }
+      // },
+      // {
+      //   path: 'adminAP',
+      //   name: 'adminAP',
+      //   component: () => import('@/views/adminAP/index'),
+      //   meta: { title: 'adminAP', icon: 'table' }
+      // },
+      // {
+      //   path: 'HR',
+      //   name: 'HR',
+      //   component: () => import('@/views/HR/index'),
+      //   meta: { title: 'HR', icon: 'table' }
+      // },
       // {
       //   path: 'table',
       //   name: 'Table',
@@ -109,64 +153,64 @@ export const constantRoutes = [
     ]
   },
 
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
+  // {
+  //   path: '/nested',
+  //   component: Layout,
+  //   redirect: '/nested/menu1',
+  //   name: 'Nested',
+  //   meta: {
+  //     title: 'Nested',
+  //     icon: 'nested'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'menu1',
+  //       component: () => import('@/views/nested/menu1/index'), // Parent router-view
+  //       name: 'Menu1',
+  //       meta: { title: 'Menu1' },
+  //       children: [
+  //         {
+  //           path: 'menu1-1',
+  //           component: () => import('@/views/nested/menu1/menu1-1'),
+  //           name: 'Menu1-1',
+  //           meta: { title: 'Menu1-1' }
+  //         },
+  //         {
+  //           path: 'menu1-2',
+  //           component: () => import('@/views/nested/menu1/menu1-2'),
+  //           name: 'Menu1-2',
+  //           meta: { title: 'Menu1-2' },
+  //           children: [
+  //             {
+  //               path: 'menu1-2-1',
+  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+  //               name: 'Menu1-2-1',
+  //               meta: { title: 'Menu1-2-1' }
+  //             },
+  //             {
+  //               path: 'menu1-2-2',
+  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+  //               name: 'Menu1-2-2',
+  //               meta: { title: 'Menu1-2-2' }
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           path: 'menu1-3',
+  //           component: () => import('@/views/nested/menu1/menu1-3'),
+  //           name: 'Menu1-3',
+  //           meta: { title: 'Menu1-3' }
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: 'menu2',
+  //       component: () => import('@/views/nested/menu2/index'),
+  //       name: 'Menu2',
+  //       meta: { title: 'menu2' }
+  //     }
+  //   ]
+  // },
 
   {
     path: 'external-link',
