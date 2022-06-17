@@ -77,6 +77,7 @@ exports.addGB = (req, res) => {
         }
         data.bFee = result[0].gFee * hours
         const sqlStr = 'insert into groundbook set ?'
+        console.log(data)
         db.query(sqlStr, data, (err, result) => {
             if (err) {
                 return res.cc(err)

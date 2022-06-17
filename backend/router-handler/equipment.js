@@ -142,7 +142,7 @@ exports.searchER = (req, res) => {
 // 归还器材接口
 exports.returnER = (req, res) => {
     const data = req.body
-    console.log(data.status, data.eRentId)
+    // console.log(data.status, data.eRentId)
     const sqlStr = `update equipmentrent set status=${data.status} where eRentId=${data.eRentId}`
     db.query(sqlStr, (err, result) => {
         if (err) {
@@ -158,7 +158,7 @@ exports.returnER = (req, res) => {
             //     message: '添加成功'
             // })
             const sqlStr3 = 'insert into financial set ?'
-            console.log(data)
+            // console.log(data)
             db.query(sqlStr3, { fIn: data.borrowFee, fInType: 1, date: new Date() }, (err, result) => {
                 if (err) {
                     return res.cc(err)

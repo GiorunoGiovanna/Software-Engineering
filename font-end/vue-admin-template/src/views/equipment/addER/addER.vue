@@ -38,7 +38,13 @@
       </el-table-column>
       <el-table-column label="借用状态" align="center">
         <template slot-scope="scope">
-          {{ scope.row.status == 1 ? "已归还" : "借用中" }}
+          {{
+            scope.row.status == 0
+              ? "待审核"
+              : scope.row.status == 1
+              ? "未归还"
+              : "已归还"
+          }}
         </template>
       </el-table-column>
       <el-table-column label="预计金额" align="center">
@@ -46,14 +52,20 @@
           {{ scope.row.borrowFee }}
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作">
+      <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope" v-if="role">
           <el-button
             v-if="scope.row.status == 0"
             type="primary"
+            @click="checkER(scope.row)"
+            >审核</el-button
+          >
+          <el-button
+            v-if="scope.row.status == 1"
+            type="primary"
             @click="returnER(scope.row)"
-            class="el-icon-circle-check"
-          ></el-button>
+            >归还</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -115,7 +127,14 @@ export default {
     },
     // 归还器材
     returnER(param) {
-      param.status = !param.status;
+      param.status = 2;
+      returnER(param).then((respone) => {
+        this.fetchData();
+      });
+    },
+    // 审核
+    checkER(param) {
+      param.status = 1;
       returnER(param).then((respone) => {
         this.fetchData();
       });

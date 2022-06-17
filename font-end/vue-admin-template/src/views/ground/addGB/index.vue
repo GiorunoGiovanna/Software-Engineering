@@ -43,17 +43,29 @@
       </el-table-column>
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
-          {{ scope.row.bStatus == 1 ? "使用中" : "使用完毕" }}
+          {{
+            scope.row.bStatus == 0
+              ? "待审核"
+              : scope.row.bStatus == 1
+              ? "使用中"
+              : "使用完毕"
+          }}
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作">
+      <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope" v-if="role">
+          <el-button
+            v-if="scope.row.bStatus == 0"
+            type="primary"
+            @click="toUpdateG(scope.row, 1)"
+            >审核</el-button
+          >
           <el-button
             v-if="scope.row.bStatus == 1"
             type="primary"
-            @click="toUpdateG(scope.row)"
-            class="el-icon-edit"
-          ></el-button>
+            @click="toUpdateG(scope.row, 3)"
+            >归还</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -123,18 +135,18 @@ export default {
     toAddG() {
       this.editId = -1;
       this.showForm = true;
-      this.title = "新增场地";
+      this.title = "借用场地";
     },
 
     // 修改
-    toUpdateG(param) {
+    toUpdateG(param, status) {
       // this.editId = param.gId;
       // this.formVal = param;
       // // console.log(this.formVal);
       // this.showForm = true;
       // this.title = "修改场地";
       let data = {
-        bStatus: 3,
+        bStatus: status,
         bId: param.bId,
         bFee: param.bFee,
         date: new Date().getDate(),

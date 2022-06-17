@@ -23,7 +23,7 @@ exports.addM = (req, res) => {
 // 删
 exports.deleteM = (req, res) => {
     const data = req.query
-    console.log(data.mId)
+    // console.log(data.mId)
     const sqlStr = `delete from matchList where mId =${data.mId}`
     db.query(sqlStr, (err, result) => {
         if (err) {

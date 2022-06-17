@@ -1,11 +1,27 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px" size="mini">
-      <el-form-item label="名称">
-        <el-input v-model="form.gName" />
+      <el-form-item label="借出场地编号">
+        <el-input v-model="form.gId" />
       </el-form-item>
-      <el-form-item label="收费标准/元">
-        <el-input v-model="form.gFee" />
+      <el-form-item label="借用者">
+        <el-input v-model="form.uId" />
+      </el-form-item>
+      <el-form-item label="借出时间">
+        <el-date-picker
+          v-model="form.bStartTime"
+          type="date"
+          placeholder="选择日期"
+        >
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="预计归还时间">
+        <el-date-picker
+          v-model="form.bEndTime"
+          type="date"
+          placeholder="选择日期"
+        >
+        </el-date-picker>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">确认</el-button>
@@ -16,7 +32,7 @@
 </template>
 
 <script>
-import { addG, updateG } from "@/api/ground";
+import { addGB } from "@/api/ground";
 import { mapGetters } from "vuex";
 import { parseTime } from "@/utils/index.js";
 
@@ -25,8 +41,11 @@ export default {
   data() {
     return {
       form: {
-        gFee: "",
-        gName: "",
+        gId: "",
+        uId: this.name,
+        bStartTime: "",
+        bEndTime: "",
+        bStatus: 0,
       },
     };
   },
@@ -36,21 +55,25 @@ export default {
   watch: {
     // 监听目前是修改状态还是添加状态
     editId(val, newVal) {
-      console.log(val, newVal);
-      if (val === -1) {
-        this.form = {
-          gFee: "",
-          gName: "",
-        };
-      } else {
-        this.form = this.formVal;
-      }
+      this.form = {
+        gId: "",
+        uId: this.name,
+        bStartTime: "",
+        bEndTime: "",
+        bStatus: 0,
+      };
     },
   },
   created() {
-    if (this.formVal.id) {
-      this.form = this.formVal;
+    this.form.uId = this.name;
+    if (this.$route.query.gId) {
+      this.form.gId = this.$route.query.gId;
     }
+    // console.log("dd", this.name);
+    // if (this.formVal.id) {
+    // this.form = this.formVal;
+    //   console.log("dd", this.name);
+    // }
   },
   methods: {
     onSubmit() {
@@ -58,12 +81,12 @@ export default {
       // console.log(this.form);
       // this.$message('submit!')
       if (!this.form.gId) {
-        addG(this.form).then((response) => {
+        addGB(this.form).then((response) => {
           this.$parent.$parent.showForm = false;
           this.$parent.$parent.fetchData();
         });
       } else {
-        updateG(this.form).then((response) => {
+        addGB(this.form).then((response) => {
           this.$parent.$parent.showForm = false;
           this.$parent.$parent.fetchData();
           // this.form = {

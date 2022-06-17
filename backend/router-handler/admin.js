@@ -86,7 +86,7 @@ exports.login = (req, res) => {
 exports.loginOut = (req, res) => {
     //提取客户端提交的信息
     const userinfo = req.headers.authorization
-    console.log(userinfo)
+    // console.log(userinfo)
     //需要登录的token
 
     //然后使token过期，完成登出
