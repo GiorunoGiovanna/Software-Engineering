@@ -72,7 +72,7 @@ exports.login = (req, res) => {
                 status: 200,
                 message: {
                     name: userinfo.userId,
-                    power: result.power ? result.power : 0
+                    power: result[0].power
                 },
                 token: 'Bearer ' + tokenStr
             })

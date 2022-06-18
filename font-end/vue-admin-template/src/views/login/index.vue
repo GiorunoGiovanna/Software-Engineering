@@ -116,7 +116,7 @@ export default {
     identity: {
       handler: function (data) {
         // 向vuex提交
-        // console.log(this.$store)
+        console.log(data);
         this.$store.commit("setIdentity", data);
       },
       immediate: true,

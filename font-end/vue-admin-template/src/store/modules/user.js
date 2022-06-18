@@ -43,6 +43,7 @@ const actions = {
         commit('SET_NAME', data.message.name)
         console.log(data)
         commit('SET_ROLE', data.message.power)
+        console.log('power', data.message)
         // localStorage.setItem('data', JSON.stringify(userInfo))
         setToken(data.token)
         resolve()
@@ -66,6 +67,7 @@ const actions = {
         commit('SET_TOKEN', getToken)
         commit('SET_NAME', data.idCardNo || data.uId)
         commit('SET_ROLE', data.power || 0)
+        console.log(data.power)
         resolve(data)
       }).catch(error => {
         reject(error)

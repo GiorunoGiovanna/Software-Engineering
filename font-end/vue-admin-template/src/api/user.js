@@ -3,7 +3,7 @@ import qs from 'qs'
 import store from '../store'
 
 export function login(data) {
-  console.log(data)
+  // console.log(store.state.identity)
   // if(store.state.identity==='user')
   return request({
     url: `/${store.state.identity}/login`,
