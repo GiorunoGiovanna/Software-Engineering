@@ -148,26 +148,34 @@ exports.returnER = (req, res) => {
         if (err) {
             return res.cc(err)
         }
-        const sqlStr2 = `update equipmenttype set borrowNum=borrowNum-? where eTypeId=${data.eTypeId}`
-        db.query(sqlStr2, data.borrowNum, (err, result) => {
-            if (err) {
-                return res.cc(err)
-            }
-            // return res.send({
-            //     status: 200,
-            //     message: '添加成功'
-            // })
-            const sqlStr3 = 'insert into financial set ?'
-            // console.log(data)
-            db.query(sqlStr3, { fIn: data.borrowFee, fInType: 1, date: new Date() }, (err, result) => {
+        if (data.status == 2) {
+            // console.log('shabi')
+            const sqlStr2 = `update equipmenttype set borrowNum=borrowNum-? where eTypeId=${data.eTypeId}`
+            db.query(sqlStr2, data.borrowNum, (err, result) => {
                 if (err) {
                     return res.cc(err)
                 }
-                return res.send({
-                    status: 200,
-                    message: '添加成功'
+                // return res.send({
+                //     status: 200,
+                //     message: '添加成功'
+                // })
+                const sqlStr3 = 'insert into financial set ?'
+                // console.log(data)
+                db.query(sqlStr3, { fIn: data.borrowFee, fInType: 1, date: new Date() }, (err, result) => {
+                    if (err) {
+                        return res.cc(err)
+                    }
+                    return res.send({
+                        status: 200,
+                        message: '添加成功'
+                    })
                 })
             })
-        })
+        } else {
+            return res.send({
+                status: 200,
+                message: '添加成功'
+            })
+        }
     })
 }
