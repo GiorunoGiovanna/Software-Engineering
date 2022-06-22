@@ -10,7 +10,7 @@
       <el-form-item label="借出时间">
         <el-date-picker
           v-model="form.bStartTime"
-          type="date"
+          type="datetime"
           placeholder="选择日期"
         >
         </el-date-picker>
@@ -18,7 +18,7 @@
       <el-form-item label="预计归还时间">
         <el-date-picker
           v-model="form.bEndTime"
-          type="date"
+          type="datetime"
           placeholder="选择日期"
         >
         </el-date-picker>

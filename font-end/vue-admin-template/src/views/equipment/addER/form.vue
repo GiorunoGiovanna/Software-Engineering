@@ -10,7 +10,7 @@
       <el-form-item label="借用开始时间">
         <el-date-picker
           v-model="form.borrowBegin"
-          type="date"
+          type="datetime"
           placeholder="选择日期"
         >
         </el-date-picker>
@@ -18,7 +18,7 @@
       <el-form-item label="借用结束时间">
         <el-date-picker
           v-model="form.borrowEnd"
-          type="date"
+          type="datetime"
           placeholder="选择日期"
         >
         </el-date-picker>

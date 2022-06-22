@@ -7,7 +7,7 @@
       <el-form-item label="购买时间">
         <el-date-picker
           v-model="form.buyDate"
-          type="date"
+          type="datetime"
           placeholder="选择日期"
         >
         </el-date-picker>

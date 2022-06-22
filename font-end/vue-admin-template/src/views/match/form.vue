@@ -8,13 +8,32 @@
         <el-input v-model="form.text" />
       </el-form-item>
       <el-form-item label="举办时间">
-        <el-input v-model="form.date" />
+        <el-date-picker
+          v-model="form.date"
+          type="datetime"
+          placeholder="选择日期"
+        >
+        </el-date-picker>
       </el-form-item>
       <el-form-item label="借用器材">
         <el-input v-model="form.eRentId" />
+        <!-- <el-button v-model="form.eRentId" @click="qical = true">选择</el-button> -->
+        <!-- <el-dialog :visible.sync="qicai" >ddd</el-dialog> -->
+        <iframe
+          src="http://localhost:9528/#/example/addER"
+          width="100%"
+          frameborder="0"
+        ></iframe>
       </el-form-item>
       <el-form-item label="借用场地">
         <el-input v-model="form.bId" />
+        <!-- <el-button v-model="form.bId" @click="changdi = true">选择</el-button> -->
+        <iframe
+          src="http://localhost:9528/#/example/addgb"
+          width="100%"
+          frameborder="0"
+        ></iframe>
+        <!-- <el-dialog :visible.sync="changdi" append-to-body>dd</el-dialog> -->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">确认</el-button>
@@ -40,6 +59,8 @@ export default {
         date: "",
         eRentId: "",
         bId: "",
+        qicai: false,
+        changdi: false,
       },
     };
   },
