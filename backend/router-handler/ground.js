@@ -102,16 +102,23 @@ exports.updateGB = (req, res) => {
         //     status: 200,
         //     message: '修改成功'
         // })
-        const sqlStr3 = 'insert into financial set ?'
-        db.query(sqlStr3, { fIn: data.bFee, fInType: 1, date: new Date() }, (err, result) => {
-            if (err) {
-                return res.cc(err)
-            }
+        if (data.bStatus != 3) {
+            const sqlStr3 = 'insert into financial set ?'
+            db.query(sqlStr3, { fIn: data.bFee, fInType: 1, date: new Date() }, (err, result) => {
+                if (err) {
+                    return res.cc(err)
+                }
+                return res.send({
+                    status: 200,
+                    message: '添加成功'
+                })
+            })
+        } else {
             return res.send({
                 status: 200,
                 message: '添加成功'
             })
-        })
+        }
     })
 }
 

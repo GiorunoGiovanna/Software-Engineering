@@ -5,7 +5,7 @@
         <el-input v-model="form.eTypeId" />
       </el-form-item>
       <el-form-item label="借用者">
-        <el-input v-model="form.uId" />
+        <el-input v-model="form.uId" :disabled="role === 0" />
       </el-form-item>
       <el-form-item label="借用开始时间">
         <el-date-picker
@@ -53,7 +53,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["name", "token"]),
+    ...mapGetters(["name", "role", "token"]),
   },
   created() {
     if (this.$route.query.eTypeId) {

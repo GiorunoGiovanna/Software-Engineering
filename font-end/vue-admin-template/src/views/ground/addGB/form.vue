@@ -5,7 +5,7 @@
         <el-input v-model="form.gId" />
       </el-form-item>
       <el-form-item label="借用者">
-        <el-input v-model="form.uId" />
+        <el-input v-model="form.uId" :disabled="role === 0" />
       </el-form-item>
       <el-form-item label="借出时间">
         <el-date-picker
@@ -50,7 +50,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["name", "token"]),
+    ...mapGetters(["name", "role", "token"]),
   },
   watch: {
     // 监听目前是修改状态还是添加状态
